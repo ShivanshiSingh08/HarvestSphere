@@ -30,7 +30,7 @@ public class SplashScreen extends AppCompatActivity {
 
         // Delay for 3 seconds and then start MainActivity
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+            startActivity(new Intent(SplashScreen.this, SendOTPActivity.class));
             finish();
         }, 3000);
     }
