@@ -1,23 +1,52 @@
-<!-- nav_menu.xml -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/login"
+                android:icon="@drawable/login"
+                android:title="Login">
+            </item>
+        </menu>
+
+    </item>
+    <group
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/harvestsphere"
-            android:title="Home" />
+            android:icon="@drawable/home"
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/harvestsphere"
-            android:title="Gallery" />
+            android:icon="@drawable/weather"
+            android:title="@string/weather_forecast" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/harvestsphere"
-            android:title="Settings" />
+            android:icon="@drawable/sell"
+            android:title="@string/selling_crops" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/harvestsphere"
-            android:title="About" />
+            android:icon="@drawable/about"
+            android:title="@string/about" />
+
     </group>
 
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/logout"
+                android:title="@string/logout">
+            </item>
+        </menu>
+
+    </item>
+
+
 </menu>
+
+

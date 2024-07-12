@@ -7,4 +7,16 @@
     <string name="descriptionImage">View for displaying image</string>
     <string name="navigation_drawer_open">drawer open\n</string>
     <string name="navigation_drawer_close">close nav drawer</string>
+    <string name="login_signup">Login/Signup</string>
+    <string name="home">Home</string>
+    <string name="weather_forecast">Weather Forecast</string>
+    <string name="selling_crops">Selling Crops</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="enter_the_otp_sent_to">Enter the OTP SENT TO</string>
+    <string name="we_will_send_you_an_otp">We will send you an OTP</string>
+    <string name="didn_t_recieve_the_otp">Didn\'t receive the OTP?</string>
+    <string name="resend_otp">RESEND OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="get_otp">Get OTP</string>
 </resources>
