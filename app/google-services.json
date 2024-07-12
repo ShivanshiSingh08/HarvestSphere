@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "584077487826",
+    "project_id": "harvestsphere-6cfd7",
+    "storage_bucket": "harvestsphere-6cfd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584077487826:android:5c87f55f5859ebd8e4470b",
+        "android_client_info": {
+          "package_name": "com.example.harvestsphere"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2syske8Np9nD6gSJJBk9_cgbNxawq_n0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
