@@ -19,4 +19,6 @@
     <string name="resend_otp">RESEND OTP</string>
     <string name="verify_otp">Verify OTP</string>
     <string name="get_otp">Get OTP</string>
+    <string name="CityName">City Name</string>
+    <string name="login">Login</string>
 </resources>
