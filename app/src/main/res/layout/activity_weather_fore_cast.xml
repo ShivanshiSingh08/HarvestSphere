@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_centerInParent="true"/>
+
     
     <RelativeLayout
         android:id="@+id/idRLHome"
@@ -108,7 +109,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/idTVTemperature"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/weather"/>
 
         <TextView
             android:layout_width="match_parent"

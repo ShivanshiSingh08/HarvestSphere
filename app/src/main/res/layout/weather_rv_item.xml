@@ -44,7 +44,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:padding="4dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/cloudy"/>
         
         <TextView
             android:id="@+id/idTVWindSpeed"

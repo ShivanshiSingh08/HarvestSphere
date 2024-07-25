@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -41,8 +42,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class Weather_ForeCast extends AppCompatActivity {
 
@@ -64,29 +67,14 @@ public class Weather_ForeCast extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_weather_fore_cast);
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        initializeViews();
-        initializeLocationManager();
-
-        searchIV.setOnClickListener(v -> {
-            String city = cityEdt.getText().toString().trim();
-            if (city.isEmpty()) {
-                Toast.makeText(Weather_ForeCast.this, "Please enter city name", Toast.LENGTH_SHORT).show();
-            } else {
-                cityName = city;
-                getWeatherInfo(cityName);
-            }
-        });
-    }
-
-    private void initializeViews() {
         homeRL = findViewById(R.id.idRLHome);
         loadingPB = findViewById(R.id.idPBLoading);
         CityNameTV = findViewById(R.id.idTVCityName);
@@ -100,28 +88,31 @@ public class Weather_ForeCast extends AppCompatActivity {
         weatherRVModalArrayList = new ArrayList<>();
         weatherRVAdapter = new WeatherRVAdapter(this, weatherRVModalArrayList);
         weatherRV.setAdapter(weatherRVAdapter);
-    }
 
-    private void initializeLocationManager() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
+            ActivityCompat.requestPermissions(Weather_ForeCast.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
         } else {
             getLocationAndWeatherInfo();
         }
+
+        searchIV.setOnClickListener(v -> {
+            String city = cityEdt.getText().toString();
+            if (city.isEmpty()) {
+                Toast.makeText(Weather_ForeCast.this, "Please enter city name", Toast.LENGTH_SHORT).show();
+            } else {
+                cityName = city;
+                getWeatherInfo(city);
+            }
+        });
     }
 
-    @SuppressLint("MissingPermission")
     private void getLocationAndWeatherInfo() {
-        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if (location != null) {
-            cityName = getCityName(location.getLatitude(), location.getLongitude());
-            if (!cityName.equals("Not Found")) {
-                getWeatherInfo(cityName);
-            } else {
-                Toast.makeText(this, "Unable to find city from location.", Toast.LENGTH_SHORT).show();
-            }
+            cityName = getCityName(location.getLongitude(), location.getLatitude());
+            getWeatherInfo(cityName);
         } else {
             Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
         }
@@ -140,10 +131,18 @@ public class Weather_ForeCast extends AppCompatActivity {
                     homeRL.setVisibility(View.VISIBLE);
                     weatherRVModalArrayList.clear();
                     try {
+                        // Log the entire response for debugging
+                        Log.d(TAG, "Weather API Response: " + response.toString());
+
                         String temperature = response.getJSONObject("current").getString("temp_c");
                         TempTV.setText(temperature + "°C");
+
                         String condition = response.getJSONObject("current").getJSONObject("condition").getString("text");
                         String conditionIcon = response.getJSONObject("current").getJSONObject("condition").getString("icon");
+
+                        Log.d(TAG, "Weather Condition: " + condition);
+
+                        // Update the icon based on condition
                         Picasso.get().load("http:".concat(conditionIcon)).into(iconIV);
                         ConditionTV.setText(condition);
 
@@ -177,26 +176,37 @@ public class Weather_ForeCast extends AppCompatActivity {
                     Log.e(TAG, "Error fetching weather data", error);
                     loadingPB.setVisibility(View.GONE);
                     Toast.makeText(Weather_ForeCast.this, "Failed to fetch weather data. Check the logs for details.", Toast.LENGTH_SHORT).show();
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Cache-Control", "no-cache");
+                return headers;
+            }
+        };
+
         requestQueue.add(jsonObjectRequest);
     }
 
-
-    private String getCityName(double latitude, double longitude) {
+    private String getCityName(double longitude, double latitude) {
         String cityName = "Not Found";
-        Geocoder gcd = new Geocoder(this, Locale.getDefault());
+        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
         try {
-            List<Address> addresses = gcd.getFromLocation(latitude, longitude, 1);
-            if (!addresses.isEmpty()) {
-                Address address = addresses.get(0);
-                cityName = address.getLocality();
-                if (cityName == null || cityName.isEmpty()) {
-                    cityName = "Not Found";
+            List<Address> addresses = gcd.getFromLocation(latitude, longitude, 10);
+            for (Address adr : addresses) {
+                if (adr != null) {
+                    String city = adr.getLocality();
+                    if (city != null && !city.equals("")) {
+                        cityName = city;
+                        break;
+                    } else {
+                        Log.d(TAG, "CITY NOT FOUND");
+                        Toast.makeText(this, "City not found", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e(TAG, "Geocoding error", e);
         }
         return cityName;
     }
@@ -209,6 +219,7 @@ public class Weather_ForeCast extends AppCompatActivity {
                 getLocationAndWeatherInfo();
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }

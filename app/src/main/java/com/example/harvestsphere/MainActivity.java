@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
             // Add your home navigation handling code here
         } else if (id == R.id.nav_weather) {
-            Toast.makeText(this, "Weather Forecast clicked", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, Weather_ForeCast.class));
         } else if (id == R.id.nav_sell) {
             Toast.makeText(this, "Selling Crops clicked", Toast.LENGTH_SHORT).show();
