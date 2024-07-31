@@ -52,7 +52,7 @@ public class Weather_ForeCast extends AppCompatActivity {
     private static final String TAG = "Weather_ForeCast";
     private RelativeLayout homeRL;
     private ProgressBar loadingPB;
-    private TextView CityNameTV, TempTV, ConditionTV;
+    private TextView CityNameTV, TempTV, ConditionTV, cropSuggestionsTV, cropListTV;
     private TextInputEditText cityEdt;
     private ImageView backIV, searchIV, iconIV;
     private RecyclerView weatherRV;
@@ -81,6 +81,8 @@ public class Weather_ForeCast extends AppCompatActivity {
         TempTV = findViewById(R.id.idTVTemperature);
         ConditionTV = findViewById(R.id.idTVCondition);
         weatherRV = findViewById(R.id.idRVWeather);
+        cropSuggestionsTV = findViewById(R.id.idTVCropSuggestions);
+        cropListTV = findViewById(R.id.idTVCropList);
         cityEdt = findViewById(R.id.idEdtCity);
         backIV = findViewById(R.id.idIVBack);
         searchIV = findViewById(R.id.idIVSearch);
@@ -148,7 +150,7 @@ public class Weather_ForeCast extends AppCompatActivity {
 
                         int isDay = response.getJSONObject("current").getInt("is_day");
                         String backgroundUrl = isDay == 1 ?
-                                "https://c8.alamy.com/comp/ET16FW/view-of-early-morning-clouds-india-ET16FW.jpg" :
+                                "https://img.freepik.com/free-photo/beautiful-sunset-sky_1150-5359.jpg?w=996&t=st=1722433262~exp=1722433862~hmac=65f1bf41d3a1888a65a8d6a7748437c9a62f186103409642266eefd551eee821" :
                                 "https://i.pinimg.com/736x/3b/6e/b4/3b6eb49be0fda397ed77d98f108320d2.jpg";
                         Picasso.get().load(backgroundUrl).into(backIV);
 
@@ -165,6 +167,8 @@ public class Weather_ForeCast extends AppCompatActivity {
                             weatherRVModalArrayList.add(new WeatherRVModal(time, temp, img, wind));
                         }
                         weatherRVAdapter.notifyDataSetChanged();
+
+                        suggestCrops(temperature, condition);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -186,6 +190,46 @@ public class Weather_ForeCast extends AppCompatActivity {
         };
 
         requestQueue.add(jsonObjectRequest);
+    }
+    private void suggestCrops(String temperature, String condition) {
+        String cropSuggestion = "";
+        double temp = Double.parseDouble(temperature);
+
+        condition = condition.toLowerCase(); // Convert to lowercase for easier matching
+
+        if (condition.contains("light rain") || condition.contains("patchy rain") || condition.contains("drizzle")) {
+            if (temp > 20) {
+                cropSuggestion = "Pulses, Vegetables"; // Crops suitable for light rain and warm temperatures
+            } else {
+                cropSuggestion = "Barley, Oats"; // Crops suitable for light rain and cooler temperatures
+            }
+        } else if (condition.contains("moderate rain") || condition.contains("heavy rain") || condition.contains("showers")) {
+            if (temp > 20) {
+                cropSuggestion = "Rice, Sugarcane"; // Crops suitable for heavy rain and warm temperatures
+            } else {
+                cropSuggestion = "Wheat, Barley"; // Crops suitable for heavy rain and cooler temperatures
+            }
+        } else if (condition.contains("sunny") || condition.contains("clear") || condition.contains("mostly sunny")) {
+            if (temp > 25) {
+                cropSuggestion = "Cotton, Millets"; // Crops suitable for hot and sunny weather
+            } else {
+                cropSuggestion = "Pulses, Vegetables"; // Crops suitable for mild and sunny weather
+            }
+        } else if (condition.contains("cloudy") || condition.contains("overcast") || condition.contains("partly cloudy")) {
+            if (temp > 20) {
+                cropSuggestion = "Maize, Sugarcane"; // Crops suitable for cloudy and warm conditions
+            } else {
+                cropSuggestion = "Peas, Mustard"; // Crops suitable for cloudy and cooler conditions
+            }
+        } else if (condition.contains("haze") || condition.contains("fog") || condition.contains("mist")) {
+            cropSuggestion = "Winter Vegetables, Mustard"; // Crops suitable for reduced sunlight and cooler temperatures
+        } else if (condition.contains("storm") || condition.contains("thunder")) {
+            cropSuggestion = "Greens, Herbs"; // Short-duration crops for unpredictable weather
+        } else {
+            cropSuggestion = "Pulses, Vegetables"; // Default crops for unclassified weather conditions
+        }
+
+        cropListTV.setText(cropSuggestion);
     }
 
     private String getCityName(double longitude, double latitude) {
