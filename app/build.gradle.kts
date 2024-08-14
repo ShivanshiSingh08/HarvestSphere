@@ -45,6 +45,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation ("androidx.annotation:annotation:1.6.0")
+
+    // TensorFlow Lite library
+    implementation("org.tensorflow:tensorflow-lite:1.14.0")
+
+    implementation ("androidx.drawerlayout:drawerlayout:1.1.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }
 
 apply(plugin = "com.google.gms.google-services")
