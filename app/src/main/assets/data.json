@@ -1,0 +1,116 @@
+    {
+    "crops": [
+        {
+            "name": "Wheat",
+            "season": "Rabi",
+            "pricePerKg": 20.0,
+            "image": "https://www.foodnavigator.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/foodnavigator.com/news/science/wheat-yields-boosted-and-protein-content-increased-by-up-to-25-study/15414079-1-eng-GB/Wheat-yields-boosted-and-protein-content-increased-by-up-to-25-study.jpg",
+            "soilType": "Loamy",
+            "description": "Wheat is a staple grain crop and is grown mainly in Rabi season."
+        },
+        {
+            "name": "Rice",
+            "season": "Kharif",
+            "pricePerKg": 18.0,
+            "image": "https://cdn.britannica.com/17/176517-050-6F2B774A/Pile-uncooked-rice-grains-Oryza-sativa.jpg",
+            "soilType": "Clayey",
+            "description": "Rice is the most widely consumed staple food for a large part of the world's human population."
+        },
+        {
+            "name": "Maize",
+            "season": "Kharif",
+            "pricePerKg": 25.0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL0vbcYo0-aKroYAVK1otsIQmLvfajGVfBLfUhRT5Qm8fmATjHNaJ8krwwA62vSrl4hio&usqp=CAU",
+            "soilType": "Sandy",
+            "description": "Maize is a versatile crop used for food, fodder, and industrial purposes."
+        },
+        {
+            "name": "Cotton",
+            "season": "Kharif",
+            "pricePerKg": 80.0,
+            "image": "https://images.ctfassets.net/3s5io6mnxfqz/4TV7YTCO1DJuMhhn7RD1Ol/b5a6c12340e6529a86bc1b557ed2d8f8/AdobeStock_136921602.jpeg",
+            "soilType": "Black",
+            "description": "Cotton is a soft, fluffy staple fiber that grows in a boll, or protective case."
+        },
+        {
+            "name": "Potato",
+            "season": "Rabi",
+            "pricePerKg": 15.0,
+            "image": "https://5.imimg.com/data5/PG/NW/IT/SELLER-11398206/patato-500x500.jpg",
+            "soilType": "Loamy",
+            "description": "Potatoes are a staple food crop, rich in carbohydrates and a key ingredient in many dishes."
+        }
+    ],
+    "pesticides": [
+        {
+            "name": "Neem Oil",
+            "pricePerLiter": 200.0,
+            "image": "data:image/jpeg;base64,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",
+            "crops": ["Wheat", "Rice", "Maize"],
+            "description": "Neem oil is a natural pesticide used for a wide range of garden pests."
+        },
+        {
+            "name": "Chlorpyrifos",
+            "pricePerLiter": 350.0,
+            "image": "https://3.imimg.com/data3/DP/IN/GLADMIN-101950/chlorpyrifos-250x250.jpg",
+            "crops": ["Cotton", "Maize"],
+            "description": "Chlorpyrifos is an organophosphate pesticide used to control various pests."
+        },
+        {
+            "name": "Copper Sulfate",
+            "pricePerKg": 150.0,
+            "image": "https://www.himedialabs.com/media/catalog/product/cache/877ab4ac479bafc7781763a993c9e527/p/c/pct0104-500g_1.png",
+            "crops": ["Potato", "Tomato"],
+            "description": "Copper sulfate is used as a fungicide, herbicide, and pesticide."
+        }
+    ],
+    "fertilizers": [
+        {
+            "name": "Urea",
+            "pricePerKg": 6.0,
+            "image": "https://cdn.dotpe.in/longtail/store-items/2393421/6vOF7od0.jpeg",
+            "crops": ["Wheat", "Rice", "Maize"],
+            "description": "Urea is a nitrogen-based fertilizer used widely to promote crop growth."
+        },
+        {
+            "name": "Potash",
+            "pricePerKg": 18.0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwwJ_IDe4SM9EgAdKslJ1xfIGW-j8K_Zz-nA&s",
+            "crops": ["Cotton", "Potato"],
+            "description": "Potash is a key ingredient for improving plant health and crop yields."
+        },
+        {
+            "name": "DAP (Diammonium Phosphate)",
+            "pricePerKg": 25.0,
+            "image": "https://5.imimg.com/data5/SELLER/Default/2023/9/344952224/JH/DH/HL/80507133/diammonium-phosphate-food-grade.jpg",
+            "crops": ["Rice", "Maize"],
+            "description": "DAP is a high-phosphorus fertilizer, essential for root development."
+        }
+    ],
+    "tools": [
+        {
+            "name": "Tractor",
+            "price": 500000.0,
+            "image": "https://thumbs.dreamstime.com/b/new-red-tractor-1326711.jpg",
+            "description": "A tractor is a powerful vehicle used for various farming tasks."
+        },
+        {
+            "name": "Plow",
+            "price": 15000.0,
+            "image": "https://t3.ftcdn.net/jpg/03/11/22/90/360_F_311229028_dBcSdFrl6lJpsRds9FA1xViVxpwYmXMG.jpg",
+            "description": "A plow is used for turning and loosening soil before planting."
+        },
+        {
+            "name": "Seed Drill",
+            "price": 25000.0,
+            "image": "https://shaktimanagro.com/wp-content/uploads/2017/02/5.-Mechanical-Seed-Drill.jpg",
+            "description": "A seed drill is used for planting seeds at the correct depth and spacing."
+        },
+        {
+            "name": "Sprayer",
+            "price": 8000.0,
+            "image": "https://5.imimg.com/data5/SELLER/Default/2021/1/HW/FZ/PP/120650822/agricultural-knapsack-sprayer.jpg",
+            "description": "A sprayer is used to apply pesticides, herbicides, or fertilizers."
+        }
+    ]
+}

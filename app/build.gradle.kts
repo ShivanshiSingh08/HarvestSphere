@@ -42,12 +42,14 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.android.volley:volley:1.2.1")
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation ("androidx.annotation:annotation:1.6.0")
-
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
     // TensorFlow Lite library
     implementation("org.tensorflow:tensorflow-lite:1.14.0")
 

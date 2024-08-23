@@ -140,18 +140,18 @@ public class MainActivity extends AppCompatActivity {
     private void handleNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_login) {
-            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SendOTPActivity.class));
             // Add your login handling code here
         } else if (id == R.id.nav_home) {
-            Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Already in home page", Toast.LENGTH_SHORT).show();
             // Add your home navigation handling code here
         } else if (id == R.id.nav_weather) {
             startActivity(new Intent(MainActivity.this, Weather_ForeCast.class));
         } else if (id == R.id.nav_sell) {
-            Toast.makeText(this, "Selling Crops clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SellProducts.class));
             // Add your selling crops navigation handling code here
         } else if (id == R.id.nav_about) {
-            Toast.makeText(this, "About clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, About.class));
             // Add your about navigation handling code here
         } else if (id == R.id.logout) {
             Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
